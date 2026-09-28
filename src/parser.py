@@ -1,6 +1,8 @@
 import os
 import shlex
 
+
+th = 2
 def expand_env_vars(text: str) -> str:
     if os.name == "nt" and "HOME" not in os.environ:
         profile = os.environ.get("USERPROFILE", "")
@@ -9,7 +11,7 @@ def expand_env_vars(text: str) -> str:
     return os.path.expandvars(text)
 
 def _strip_quotes(token: str) -> str:
-    if len(token) >= 2 and token[0] == token[-1] and token[0] in ('"', "'"):
+    if len(token) >= th and token[0] == token[-1] and token[0] in ('"', "'"):
         return token[1:-1]
     return token
 
