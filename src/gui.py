@@ -6,7 +6,8 @@ from src.commands import execute_command
 
 
 class EmulatorGUI:
-    def __init__(self, vfs_name: str="default-vfs", config: dict | None = None):
+    def __init__(self, vfs_name: str = "default-vfs",
+                 config: dict | None = None):
         self.vfs_name = vfs_name
         self.config = config or {}
         self.context = {"exit": False, "vfs_name": vfs_name}

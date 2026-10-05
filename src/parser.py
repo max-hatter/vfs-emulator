@@ -11,7 +11,8 @@ def expand_env_vars(text: str) -> str:
     return os.path.expandvars(text)
 
 def _strip_quotes(token: str) -> str:
-    if len(token)>=min_len and token[0]==token[-1] and token[0] in ('"', "'"):
+    if (len(token) >= min_len and
+            token[0] == token[-1] and token[0] in ('"', "'")):
         return token[1:-1]
     return token
 
