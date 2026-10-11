@@ -1,0 +1,14 @@
+path,type,content
+/,dir,
+home,dir,
+home/user,dir,
+home/user/docs,dir,
+home/user/docs/work,dir,
+home/user/docs/work/report.txt,file,RG9jdW1lbnQgYm9keQ==
+home/user/docs/work/archive.zip,file,UEsDBAoAAAAA
+home/user/docs/personal,dir,
+home/user/docs/personal/diary.txt,file,TXkgZGlhcnk=
+home/user/photo.png,file,iVBORw0KGgo=
+var,dir,
+var/log,dir,
+var/log/app.log,file,bG9nIGxpbmUgMQpsb2cgbGluZSAy

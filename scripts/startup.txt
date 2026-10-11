@@ -1,23 +1,19 @@
-# Стартовый скрипт для тестирования эмулятора
-# Выполняется последовательно, ошибочные строки пропускаются
-
-# Приветствие
-echo Hello from startup script
-
-# Заглушки команд
+echo Загрузка VFS...
 ls
-ls -la /tmp
 cd /home
-cd $HOME
-
-# Демонстрация ошибок (строки будут пропущены, скрипт продолжится)
+ls
+cd user
+ls
+cd docs
+ls
+cd work
+ls
+cd ..
+cd ..
+cd ..
+cd ..
+ls
 unknown_command
-cd
-exit_with_args foo
-
-# Проверка раскрытия переменных окружения
-echo $USERPROFILE
-echo $PATH
-
-# Завершение
+cd /no-such-dir
+ls /etc
 exit

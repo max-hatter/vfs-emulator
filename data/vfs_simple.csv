@@ -1,0 +1,8 @@
+path,type,content
+/,dir,
+home,dir,
+home/user,dir,
+home/user/notes.txt,file,VGhpcyBpcyBhIG5vdGU=
+home/user/data.bin,file,AAECAwQ=
+etc,dir,
+etc/config.ini,file,a2V5PXZhbHVl

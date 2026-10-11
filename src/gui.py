@@ -3,14 +3,28 @@ from tkinter import scrolledtext
 
 from src.parser import parse_command
 from src.commands import execute_command
+from src.vfs import VFS
 
 
 class EmulatorGUI:
-    def __init__(self, vfs_name: str = "default-vfs",
-                 config: dict | None = None):
+    def __init__(self, vfs_name: str = "default-vfs", config: dict | None = None):
         self.vfs_name = vfs_name
         self.config = config or {}
-        self.context = {"exit": False, "vfs_name": vfs_name}
+
+        self.vfs = VFS()
+        self.vfs_error: str | None = None
+        vfs_path = self.config.get("vfs_path")
+        if vfs_path:
+            try:
+                self.vfs.load_from_csv(vfs_path)
+            except (FileNotFoundError, ValueError) as e:
+                self.vfs_error = f"Ошибка загрузки VFS: {e}"
+
+        self.context = {
+            "exit": False,
+            "vfs_name": vfs_name,
+            "vfs": self.vfs,
+        }
 
         self.root = tk.Tk()
         self.root.title(vfs_name)
@@ -29,6 +43,8 @@ class EmulatorGUI:
         self.entry.bind("<Return>", self.on_enter)
 
         self.print_output(f"Эмулятор VFS: {vfs_name}")
+        if self.vfs_error:
+            self.print_output(self.vfs_error)
         self.print_output("Введите 'exit' для выхода.\n")
 
         if self.config.get("script_path"):
@@ -55,7 +71,9 @@ class EmulatorGUI:
             line = raw_line.strip()
             if not line or line.startswith("#"):
                 continue
+
             self.print_output(f"> {line}")
+
             try:
                 name, args = parse_command(line)
             except ValueError as e:
